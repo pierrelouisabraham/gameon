@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <title>Reservation</title>
@@ -54,7 +54,7 @@
 
       <div class="bground">
         <div class="content">
-          <span class="close"></span>
+          <span class="close" onclick="closeModal()"></span>
           <div class="modal-body">
             <form
               name="reserve"
@@ -81,6 +81,7 @@
                   type="text"
                   id="last"
                   name="last"
+                  minlength="2"
                 /><br>
               </div>
               <div
@@ -204,6 +205,7 @@
                 type="submit"
                 class="button"
                 value="C'est parti"
+                method="post"
               />
             </form>
           </div>
