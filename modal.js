@@ -11,7 +11,11 @@ function editNav() {
   const modalbg = document.querySelector(".bground");
   const modalBtn = document.querySelectorAll(".modal-btn");
   const formData = document.querySelectorAll(".formData");
-  
+  /* const form = document.querySelector("form").addEventListener("submit", evt => {
+    evt.preventDefault
+    
+    
+  }) */
   // launch modal event
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
   
@@ -21,28 +25,13 @@ function editNav() {
   }
 
   function closeModal() {
+
     modalbg.style.display = "none";
   }
 
   function validate() {
-    let bool = true;
-    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(document.getElementById("first").value.length < 2) {
-      document.getElementById("first").style.borderColor = "red";
-      alert("Saisie invalide");
-      return false;
-    }
-    if(document.getElementById("last").value.length < 2) {
-      document.getElementById("last").style.borderColor = "red";
-      alert("Saisie invalide");
-      return false;
-    }
-    if(document.getElementById("email").value.match(regex)) {
-      return true;
-    } else {
-      alert("Saisie mail invalide");
-      document.getElementById("email").style.borderColor = "red";
-      return false;
-    }
-    
-  }
+    if (document.reserve.first.value == "toto")
+      return false
+    else 
+      return true
+  } 
