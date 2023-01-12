@@ -63,48 +63,59 @@
               onsubmit="return validate();"
             >
               <div
-                class="formData">
-                <label for="firstname">Prénom</label><br>
+                class="formData"
+                data-error="Veuillez entrer au minimum deux caractères"
+                data-error-visible="false"
+                >
+                <label for="first" >Prénom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="first"
                   name="first"
-                  data-pattern-error="Votre prénom ne peut contenir des lettres."
-                  data-error="Veuillez entrer au minimum deux caractères"
-                /><br>
+                  data-error-visible="false"
+                  /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error="Veuillez entrer au minimum deux caractères"
+                data-error-visible="false"
+                >
                 <label>Nom</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="last"
                   name="last"
-                  data-pattern-error="Votre prénom ne peut contenir des lettres."
-                  data-error="Veuillez entrer au minimum deux caractères"
+                  data-error-visible="false"
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error="Votre mail n'est pas conforme."
+                data-error-visible="false"
+                >
                 <label>E-mail</label><br>
                 <input
                   class="text-control"
                   type="text"
                   id="email"
                   name="email"
-                  data-pattern-error="Votre mail n'est pas conforme."
+                  data-error-visible="false"
                 /><br>
               </div>
               <div
-                class="formData">
+                class="formData"
+                data-error="Vous devez entrer votre date de naissance."
+                data-error-visible="false"
+                >
                 <label>Date de naissance</label><br>
                 <input
                   class="text-control"
                   type="date"
                   id="birthdate"
                   name="birthdate"
+                  data-error-visible="false"
                 /><br>
               </div>
               <div
@@ -114,7 +125,10 @@
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData"
+                data-error="Vous devez choisir une option."
+                data-error-visible="false"
+                >
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -184,7 +198,10 @@
               </div>
 
               <div
-                class="formData">
+                class="formData"
+                data-error="Vous devez vérifier que vous acceptez les termes et conditions."
+                data-error-visible="false"
+                >
                 <input
                   class="checkbox-input"
                   type="checkbox"
