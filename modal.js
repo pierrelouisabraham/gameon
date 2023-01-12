@@ -41,19 +41,14 @@ function editNav() {
   }
 
   function checkFirstname(evt) {
-    console.log(evt);
-    console.log(formData)
     if (evt["path"][0][0].value.length < 2) {
       /* showElement() */
       evt["path"][0][0].dataset.errorVisible = "true";
       formData[0].dataset.errorVisible = "true";
-      console.log(evt);
-      console.log(formData, 2)
       return true;
     }
     evt["path"][0][0].dataset.errorVisible = "false";
     formData[0].dataset.errorVisible = "false";
-    console.log(evt);
     return false;
   }
 
@@ -93,7 +88,6 @@ function editNav() {
 
   function checkRadio(evt) {
     for(let i = 5; i < evt["path"][0].length - 3; i++){
-      console.log(i)
       if (evt["path"][0][i].checked) {
         formData[i].dataset.errorVisible = "false";
         return false;
@@ -105,12 +99,9 @@ function editNav() {
 
   function checkTerms(evt) {
     if (!evt["path"][0][11].checked) {
-      console.log(salut)
       formData[6].dataset.errorVisible = "true";
       return false;
-      
     }
-    console.log(salut, 2)
     formData[6].dataset.errorVisible = "false";
     return true;
   }
