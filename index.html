@@ -59,7 +59,7 @@
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit=""
             >
               <div
                 class="formData"
@@ -80,7 +80,7 @@
                 data-error="Veuillez entrer au minimum deux caractères"
                 data-error-visible="false"
                 >
-                <label>Nom</label><br>
+                <label for="last">Nom</label><br>
                 <input
                   class="text-control"
                   type="text"
@@ -94,7 +94,7 @@
                 data-error="Votre mail n'est pas conforme."
                 data-error-visible="false"
                 >
-                <label>E-mail</label><br>
+                <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
                   type="text"
@@ -108,7 +108,7 @@
                 data-error="Vous devez entrer votre date de naissance."
                 data-error-visible="false"
                 >
-                <label>Date de naissance</label><br>
+                <label for="birthdate">Date de naissance</label><br>
                 <input
                   class="text-control"
                   type="date"
@@ -119,7 +119,7 @@
               </div>
               <div
                 class="formData">
-                <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
+                <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>

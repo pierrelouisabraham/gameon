@@ -97,7 +97,7 @@
   
   
   
-   @media screen and (max-width: 540px) {
+   @media screen and (max-width: 768px) {
     .topnav a {display: none;}
     .topnav a.icon {
       float: right;
@@ -481,7 +481,7 @@
     padding-right: 2vw;
     margin: 0 20px;
   }
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 768px) {
     .hero-section {
       display: block;
       box-shadow: unset;
@@ -498,12 +498,13 @@
       display: none;
     }
     .hero-headline {
-      font-size: 4.5rem;
+      font-size: 40px;
       white-space: normal;
+      font-weight: 500;
     }
     .hero-text {
-      width: unset;
-      font-size: 1.5rem;
+      width: 78%;
+      font-size: 13px;
     }
     .hero-img img {
       border-radius: 10px;

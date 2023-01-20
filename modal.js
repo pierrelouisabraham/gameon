@@ -11,14 +11,45 @@ function editNav() {
   const modalbg = document.querySelector(".bground");
   const modalBtn = document.querySelectorAll(".modal-btn");
   const formData = document.querySelectorAll(".formData");
-  const firstNameInput = document.getElementById("first").value;
+  const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var firstNameInput = document.getElementById("first");
+  var lastNameInput = document.getElementById("last");
+  var email = document.getElementById("email");
+
+  // Check on submit
   var form = document.querySelector("form").addEventListener("submit", evt => {
     let error = false;
-    error = checkFirstname(evt) || checkName(evt) || checkEmail(evt) || checkBirthdate(evt) || checkRadio(evt) || checkTerms(evt);
+    error = checkFirstname() || error;
+    error = checkName() || error;
+    error = checkEmail() || error;
+    error = checkBirthdate() || error;
+    error = checkRadio() || error;
+    error = checkTerms() || error;
     if (error)
       evt.preventDefault();
+    else
+      alert("Vos données ont bien été prise en compte")
     })
+
+
   
+/*     var name = document.querySelector("first").addEventListener("input", evt => {
+      if (firstNameInput.value == '' || firstNameInput.length < 2)
+        firstNameInput.dataset.errorVisible = true;
+    })
+
+    var name = document.querySelector("first").addEventListener("input", evt => {
+      if (firstNameInput.value == '' || firstNameInput.length < 2)
+        firstNameInput.dataset.errorVisible = true;
+    })
+    var name = document.querySelector("first").addEventListener("input", evt => {
+      if (firstNameInput.value == '' || firstNameInput.length < 2)
+        firstNameInput.dataset.errorVisible = true;
+    })
+    var name = document.querySelector("first").addEventListener("input", evt => {
+      if (firstNameInput.value == '' || firstNameInput.length < 2)
+        firstNameInput.dataset.errorVisible = true;
+    }) */
   
   // launch modal event
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -40,68 +71,108 @@ function editNav() {
     el.style.display = "inline";
   }
 
-  function checkFirstname(evt) {
-    if (evt["path"][0][0].value.length < 2) {
+  var blurFirst= document.querySelector("form").addEventListener("blur", evt => {
+    if (firstNameInput.value == '' || firstNameInput.value.length < 2) {
+      firstNameInput.dataset.errorVisible = "true";
+      formData[0].dataset.errorVisible = "true";
+    }
+    else {
+      firstNameInput.dataset.errorVisible = "false";
+      formData[0].dataset.errorVisible = "false";
+    }
+    if (lastNameInput.value == '' || lastNameInput.value.length < 2) {
+      lastNameInput.dataset.errorVisible = "true";
+      formData[1].dataset.errorVisible = "true";
+    }
+    else {
+      lastNameInput.dataset.errorVisible = "false";
+      formData[1].dataset.errorVisible = "false";
+    }
+    if (email.value == '' || !email.value.match(regex)) {
+      email.dataset.errorVisible = "true";
+      formData[2].dataset.errorVisible = "true";
+    }
+    else {
+      email.dataset.errorVisible = "false";
+      formData[2].dataset.errorVisible = "false";
+    }
+    if (document.getElementById("birthdate").value == "") {
+      document.getElementById("birthdate").dataset.errorVisible = "true";
+      formData[3].dataset.errorVisible = "true";
+      return true;
+    }else {
+      document.getElementById("birthdate").dataset.errorVisible = "false";
+      formData[3].dataset.errorVisible = "false";
+      return false;
+    }
+
+  }, true)
+
+  function checkFirstname() {
+    if (firstNameInput.value.length < 2) {
       /* showElement() */
-      evt["path"][0][0].dataset.errorVisible = "true";
+    
+      firstNameInput.dataset.errorVisible = "true";
       formData[0].dataset.errorVisible = "true";
       return true;
     }
-    evt["path"][0][0].dataset.errorVisible = "false";
+    firstNameInput.dataset.errorVisible = "false";
     formData[0].dataset.errorVisible = "false";
     return false;
   }
 
-  function checkName(evt) {
-    if (evt["path"][0][1].value.length < 2) {
-      evt["path"][0][1].dataset.errorVisible = "true";
+  function checkName() {
+    if (lastNameInput.value.length < 2) {
+      lastNameInput.dataset.errorVisible = "true";
       formData[1].dataset.errorVisible = "true";
       return true;
     }
-    evt["path"][0][1].dataset.errorVisible = "false";
+    lastNameInput.dataset.errorVisible = "false";
     formData[1].dataset.errorVisible = "false";
     return false;
   }
 
-  function checkEmail(evt) {
-    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (!evt["path"][0][2].value.match(regex)) {
-      evt["path"][0][2].dataset.errorVisible = "true";
+  function checkEmail() {
+    
+    if (!email.value.match(regex)) {
+      email.dataset.errorVisible = "true";
       formData[2].dataset.errorVisible = "true";
       return true;
     }
-    evt["path"][0][2].dataset.errorVisible = "false";
+    email.dataset.errorVisible = "false";
     formData[2].dataset.errorVisible = "false";
     return false;
   }
 
-  function checkBirthdate(evt) {
-    if (evt["path"][0][3].value == "") {
-      evt["path"][0][3].dataset.errorVisible = "true";
+  function checkBirthdate() {
+    if (document.getElementById("birthdate").value == "") {
+      document.getElementById("birthdate").dataset.errorVisible = "true";
       formData[3].dataset.errorVisible = "true";
       return true;
     }
-    evt["path"][0][3].dataset.errorVisible = "false";
+    document.getElementById("birthdate").dataset.errorVisible = "false";
     formData[3].dataset.errorVisible = "false";
     return false;
   }
 
-  function checkRadio(evt) {
-    for(let i = 5; i < evt["path"][0].length - 3; i++){
-      if (evt["path"][0][i].checked) {
-        formData[i].dataset.errorVisible = "false";
+  function checkRadio() {
+      if (document.querySelector('input[name="location"]:checked') == null) {
+        console.log(document.querySelector('input[name="location"]:checked') )
+        formData[5].dataset.errorVisible = "true";
+        return true;
+      }
+      else{
+        formData[5].dataset.errorVisible = "false";
         return false;
       }
-    }
-      formData[5].dataset.errorVisible = "true";
-      return true;
+      
   }
 
-  function checkTerms(evt) {
-    if (!evt["path"][0][11].checked) {
+  function checkTerms() {
+    if (!document.getElementById("checkbox1").checked) {
       formData[6].dataset.errorVisible = "true";
-      return false;
+      return true;
     }
     formData[6].dataset.errorVisible = "false";
-    return true;
+    return false;
   }
