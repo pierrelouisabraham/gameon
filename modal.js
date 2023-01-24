@@ -12,45 +12,31 @@ function editNav() {
   const modalBtn = document.querySelectorAll(".modal-btn");
   const formData = document.querySelectorAll(".formData");
   const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  var firstNameInput = document.getElementById("first");
-  var lastNameInput = document.getElementById("last");
-  var email = document.getElementById("email");
+  const firstNameInput = document.getElementById("first");
+  const lastNameInput = document.getElementById("last");
+  const email = document.getElementById("email");
+  const birthdate = document.getElementById("birthdate");
+  const quantity = document.getElementById("quantity");
 
   // Check on submit
-  var form = document.querySelector("form").addEventListener("submit", evt => {
+    document.querySelector("form").addEventListener("submit", evt => {
     let error = false;
     error = checkFirstname() || error;
     error = checkName() || error;
     error = checkEmail() || error;
     error = checkBirthdate() || error;
+    error = checkTournament() || error;
     error = checkRadio() || error;
     error = checkTerms() || error;
     if (error)
       evt.preventDefault();
-    else
+    else {
+      closeModal();
       alert("Vos données ont bien été prise en compte")
-    })
+    }
 
+    });
 
-  
-/*     var name = document.querySelector("first").addEventListener("input", evt => {
-      if (firstNameInput.value == '' || firstNameInput.length < 2)
-        firstNameInput.dataset.errorVisible = true;
-    })
-
-    var name = document.querySelector("first").addEventListener("input", evt => {
-      if (firstNameInput.value == '' || firstNameInput.length < 2)
-        firstNameInput.dataset.errorVisible = true;
-    })
-    var name = document.querySelector("first").addEventListener("input", evt => {
-      if (firstNameInput.value == '' || firstNameInput.length < 2)
-        firstNameInput.dataset.errorVisible = true;
-    })
-    var name = document.querySelector("first").addEventListener("input", evt => {
-      if (firstNameInput.value == '' || firstNameInput.length < 2)
-        firstNameInput.dataset.errorVisible = true;
-    }) */
-  
   // launch modal event
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
   
@@ -71,42 +57,13 @@ function editNav() {
     el.style.display = "inline";
   }
 
-  var blurFirst= document.querySelector("form").addEventListener("blur", evt => {
-    if (firstNameInput.value == '' || firstNameInput.value.length < 2) {
-      firstNameInput.dataset.errorVisible = "true";
-      formData[0].dataset.errorVisible = "true";
-    }
-    else {
-      firstNameInput.dataset.errorVisible = "false";
-      formData[0].dataset.errorVisible = "false";
-    }
-    if (lastNameInput.value == '' || lastNameInput.value.length < 2) {
-      lastNameInput.dataset.errorVisible = "true";
-      formData[1].dataset.errorVisible = "true";
-    }
-    else {
-      lastNameInput.dataset.errorVisible = "false";
-      formData[1].dataset.errorVisible = "false";
-    }
-    if (email.value == '' || !email.value.match(regex)) {
-      email.dataset.errorVisible = "true";
-      formData[2].dataset.errorVisible = "true";
-    }
-    else {
-      email.dataset.errorVisible = "false";
-      formData[2].dataset.errorVisible = "false";
-    }
-    if (document.getElementById("birthdate").value == "") {
-      document.getElementById("birthdate").dataset.errorVisible = "true";
-      formData[3].dataset.errorVisible = "true";
-      return true;
-    }else {
-      document.getElementById("birthdate").dataset.errorVisible = "false";
-      formData[3].dataset.errorVisible = "false";
-      return false;
-    }
+  document.querySelector("#first").addEventListener("blur", checkFirstname);
+  document.querySelector("#last").addEventListener("blur", checkName);
+  document.querySelector("#email").addEventListener("blur", checkEmail);
+  document.querySelector("#birthdate").addEventListener("blur", checkBirthdate);
+  document.querySelector("#quantity").addEventListener("blur", checkTournament);
 
-  }, true)
+
 
   function checkFirstname() {
     if (firstNameInput.value.length < 2) {
@@ -124,7 +81,7 @@ function editNav() {
   function checkName() {
     if (lastNameInput.value.length < 2) {
       lastNameInput.dataset.errorVisible = "true";
-      formData[1].dataset.errorVisible = "true";
+      lastNameInput.closest("div.formData").dataset.errorVisible = "true";
       return true;
     }
     lastNameInput.dataset.errorVisible = "false";
@@ -133,36 +90,45 @@ function editNav() {
   }
 
   function checkEmail() {
-    
     if (!email.value.match(regex)) {
       email.dataset.errorVisible = "true";
-      formData[2].dataset.errorVisible = "true";
+      email.closest("div.formData").dataset.errorVisible = "true";
       return true;
     }
     email.dataset.errorVisible = "false";
-    formData[2].dataset.errorVisible = "false";
+    email.closest("div.formData").dataset.errorVisible = "false";
     return false;
   }
 
   function checkBirthdate() {
-    if (document.getElementById("birthdate").value == "") {
-      document.getElementById("birthdate").dataset.errorVisible = "true";
-      formData[3].dataset.errorVisible = "true";
+    if (birthdate.value == "") {
+      birthdate.dataset.errorVisible = "true";
+      birthdate.closest("div.formData").dataset.errorVisible = "true";
       return true;
     }
-    document.getElementById("birthdate").dataset.errorVisible = "false";
-    formData[3].dataset.errorVisible = "false";
+    birthdate.dataset.errorVisible = "false";
+    birthdate.closest("div.formData").dataset.errorVisible = "false";
     return false;
+  }
+
+  function checkTournament() {
+    if(quantity.value == "") {
+      quantity.dataset.errorVisible = "true";
+      quantity.closest("div.formData").dataset.errorVisible = "true";
+    }
+    else {
+      quantity.dataset.errorVisible = "false";
+      quantity.closest("div.formData").closest("div.formData").dataset.errorVisible = "false";
+    }
   }
 
   function checkRadio() {
       if (document.querySelector('input[name="location"]:checked') == null) {
-        console.log(document.querySelector('input[name="location"]:checked') )
-        formData[5].dataset.errorVisible = "true";
+        document.getElementById("location1").closest("div.formData").dataset.errorVisible = "true";
         return true;
       }
       else{
-        formData[5].dataset.errorVisible = "false";
+        document.getElementById("location1").closest("div.formData").dataset.errorVisible = "false";
         return false;
       }
       

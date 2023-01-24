@@ -79,6 +79,13 @@
       float: right;
       display: block;
     }
+
+    .topnav img {
+      padding-right: 1rem;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
   }
   
   @media screen and (max-width: 768px) {
@@ -100,9 +107,8 @@
    @media screen and (max-width: 768px) {
     .topnav a {display: none;}
     .topnav a.icon {
-      float: right;
+      float: left;
       display: block;
-      margin-top: -15px;
     }
   } 
   
@@ -221,7 +227,7 @@
     display: block;
     margin-top: 7px;
     margin-bottom: 7px;
-    text-align: right;
+    text-align: left;
     line-height: 0.3;
     opacity: 1;
     transition: 0.3s;
@@ -459,6 +465,7 @@
   }
   .hero-img {
     grid-column: span 8;
+    object-fit: cover;
   }
   .hero-img img {
     width: 100%;
