@@ -101,7 +101,12 @@ function editNav() {
   }
 
   function checkBirthdate() {
-    if (birthdate.value == "") {
+    let today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    let year = today.getFullYear();
+    let birthYear = new Date([birthdate.value])
+    if (birthdate.value == "" || birthYear > today) {
       birthdate.dataset.errorVisible = "true";
       birthdate.closest("div.formData").dataset.errorVisible = "true";
       return true;
