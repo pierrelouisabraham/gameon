@@ -1,5 +1,9 @@
+/**
+ * 
+ */
+
 function editNav() {
-    var x = document.getElementById("myTopnav");
+    const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
       x.className += " responsive";
     } else {
@@ -30,13 +34,15 @@ function editNav() {
     error = checkTerms() || error;
     if (error)
       evt.preventDefault();
-    else {
+    else { 
       closeModal();
-      alert("Vos données ont bien été prise en compte")
+      setTimeout(showValidationMessage, 15);
     }
-
     });
 
+    function showValidationMessage() {
+      alert("Vos données ont bien été prise en compte");
+    }
   // launch modal event
   modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
   
@@ -53,28 +59,35 @@ function editNav() {
     el.style.display = "none";
   }
 
+  /**
+   * 
+   * @param {htmlElement} el 
+   */
   function showElement(el) {
     el.style.display = "inline";
   }
 
-  document.querySelector("#first").addEventListener("blur", checkFirstname);
-  document.querySelector("#last").addEventListener("blur", checkName);
+  //
+  document.querySelector("#first").addEventListener("blur", checkFirstname); // ou progressif
+  document.querySelector("#last").addEventListener("blur", checkName); //
   document.querySelector("#email").addEventListener("blur", checkEmail);
   document.querySelector("#birthdate").addEventListener("blur", checkBirthdate);
   document.querySelector("#quantity").addEventListener("blur", checkTournament);
+  document.querySelectorAll("input[type='radio']").forEach(radio => {
+    radio.addEventListener(("click"), checkRadio);
+  });
+  document.querySelector("#checkbox1").addEventListener("click", checkTerms);
 
 
 
   function checkFirstname() {
     if (firstNameInput.value.length < 2) {
-      /* showElement() */
-    
       firstNameInput.dataset.errorVisible = "true";
-      formData[0].dataset.errorVisible = "true";
+      firstNameInput.closest("div.formData").dataset.errorVisible = "true";
       return true;
     }
     firstNameInput.dataset.errorVisible = "false";
-    formData[0].dataset.errorVisible = "false";
+    firstNameInput.closest("div.formData").dataset.errorVisible = "false";
     return false;
   }
 
@@ -85,7 +98,7 @@ function editNav() {
       return true;
     }
     lastNameInput.dataset.errorVisible = "false";
-    formData[1].dataset.errorVisible = "false";
+    lastNameInput.closest("div.formData").dataset.errorVisible = "false";
     return false;
   }
 
@@ -141,9 +154,9 @@ function editNav() {
 
   function checkTerms() {
     if (!document.getElementById("checkbox1").checked) {
-      formData[6].dataset.errorVisible = "true";
+      document.getElementById("checkbox1").closest("div.formData").closest("div.formData").dataset.errorVisible = "true";
       return true;
     }
-    formData[6].dataset.errorVisible = "false";
+    document.getElementById("checkbox1").closest("div.formData").closest("div.formData").dataset.errorVisible = "false";
     return false;
   }
