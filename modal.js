@@ -1,7 +1,6 @@
-/**
- * 
- */
-
+//TODO parser html + css
+//TODO formatage js
+//TODO comment on js and  documentation
 function editNav() {
     const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
@@ -79,7 +78,9 @@ function editNav() {
   document.querySelector("#checkbox1").addEventListener("click", checkTerms);
 
 
-
+/**
+ * check input value contain at least 2 letters return true
+ */
   function checkFirstname() {
     if (firstNameInput.value.length < 2) {
       firstNameInput.dataset.errorVisible = "true";
@@ -91,6 +92,9 @@ function editNav() {
     return false;
   }
 
+  /**
+  * check input value contain at least 2 letters return true
+  */
   function checkName() {
     if (lastNameInput.value.length < 2) {
       lastNameInput.dataset.errorVisible = "true";
@@ -130,7 +134,8 @@ function editNav() {
   }
 
   function checkTournament() {
-    if(quantity.value == "") {
+    let reg = "[0-9]+";
+    if(!quantity.value.match(reg)) {
       quantity.dataset.errorVisible = "true";
       quantity.closest("div.formData").dataset.errorVisible = "true";
     }
