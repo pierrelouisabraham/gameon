@@ -41,7 +41,6 @@ img {
 
 .main-navbar {
   float: right;
-  background-color: #f0f7f7;
 }
 
 .topnav a {
@@ -93,6 +92,10 @@ img {
     top: 10px;
     left: 10px;
     z-index: -1;
+  }
+  
+  .main-navbar{
+    background-color: #e1ddddd4;
   }
 }
 
