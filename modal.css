@@ -3,6 +3,7 @@
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -33,12 +34,16 @@ img {
   overflow: hidden;
   margin: 3.5%;
 }
+
 .header-logo {
   float: left;
 }
+
 .main-navbar {
   float: right;
+  background-color: #f0f7f7;
 }
+
 .topnav a {
   float: left;
   display: block;

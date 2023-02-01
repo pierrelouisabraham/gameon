@@ -46,7 +46,7 @@
         </div>
         <button class="btn-signup modal-btn"> je m'inscris </button>
       </div>
-      <div class="bground">
+      <div class="bground" id="register">
         <div class="content">
           <span class="close" onclick="closeModal()"></span>
           <div class="modal-body">
@@ -113,6 +113,16 @@
               </div>
               <input id="btn-submit" type="submit" class="button" value="C'est parti" method="post" />
             </form>
+            
+        </div>
+      </div>
+      </div>
+      <div class="bground" id="success">
+        <div class="content">
+          <span class="close" onclick="closeModalConfirm()"></span>
+          <div class="modal-body">
+            <span>Vos données ont bien été prises en compte</span>
+            <button class="btn-signup modal-btn" onclick="closeModalConfirm()">Fermer</button>
           </div>
         </div>
       </div>

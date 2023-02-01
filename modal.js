@@ -8,7 +8,7 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
+const modalbg = document.querySelector("#register");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -17,6 +17,7 @@ const lastNameInput = document.getElementById("last");
 const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
+const modalbgsuccess = document.querySelector("#success");
 
 // Check on submit
 document.querySelector("form").addEventListener("submit", evt => {
@@ -32,13 +33,20 @@ document.querySelector("form").addEventListener("submit", evt => {
 		evt.preventDefault();
 	else {
 		closeModal();
-		setTimeout(showValidationMessage, 15);
+		openModalSuccess();
 	}
 });
 
-function showValidationMessage() {
-	alert("Vos données ont bien été prise en compte");
+//launch modal success
+function openModalSuccess() {
+	modalbgsuccess.style.display = "block";
 }
+
+//fermeture modal success
+function closeModalConfirm() {
+	modalbgsuccess.style.display = "none";
+}
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
