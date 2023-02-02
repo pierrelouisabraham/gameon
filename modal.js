@@ -9,7 +9,8 @@ function editNav() {
 
 // DOM Elements
 const modalbg = document.querySelector("#register");
-const modalBtn = document.querySelectorAll(".modal-btn");
+const modalBtn = document.querySelector("#registerbtn");
+const modalBtnSuccess = document.querySelector("#successbtn");
 const formData = document.querySelectorAll(".formData");
 const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const firstNameInput = document.getElementById("first");
@@ -18,6 +19,9 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const modalbgsuccess = document.querySelector("#success");
+
+
+
 
 // Check on submit
 document.querySelector("form").addEventListener("submit", evt => {
@@ -32,6 +36,7 @@ document.querySelector("form").addEventListener("submit", evt => {
 	if (error)
 		evt.preventDefault();
 	else {
+		evt.stopPropagation();
 		closeModal();
 		openModalSuccess();
 	}
@@ -40,19 +45,24 @@ document.querySelector("form").addEventListener("submit", evt => {
 //launch modal success
 function openModalSuccess() {
 	modalbgsuccess.style.display = "block";
+	console.log('2')
 }
 
 //fermeture modal success
-function closeModalConfirm() {
+function closeModalSuccess() {
 	modalbgsuccess.style.display = "none";
 }
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+modalBtn.addEventListener("click", launchModal);
+
+modalBtnSuccess.addEventListener("click", closeModalSuccess);
+
 
 // launch modal form
 function launchModal() {
 	modalbg.style.display = "block";
+	console.log('1')
 }
 
 function closeModal() {
@@ -143,12 +153,14 @@ function checkBirthdate() {
 
 function checkTournament() {
 	let reg = "[0-9]+";
-	if (!quantity.value.match(reg)) {
+	if (!quantity.value.match(reg) || quantity.value == "") {
 		quantity.dataset.errorVisible = "true";
 		quantity.closest("div.formData").dataset.errorVisible = "true";
+		return true;
 	} else {
 		quantity.dataset.errorVisible = "false";
 		quantity.closest("div.formData").closest("div.formData").dataset.errorVisible = "false";
+		return false;
 	}
 }
 

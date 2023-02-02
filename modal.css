@@ -93,10 +93,6 @@ img {
     left: 10px;
     z-index: -1;
   }
-  
-  .main-navbar{
-    background-color: #e1ddddd4;
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -112,6 +108,7 @@ img {
     float: none;
     display: block;
     text-align: left;
+    background-color: #e1ddddd4;
   }
 }
 
