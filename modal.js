@@ -135,6 +135,9 @@ function checkEmail() {
 	return false;
 }
 
+/**
+ * check input value contain a date valid and return boolean
+ */
 function checkBirthdate() {
 	let today = new Date();
 	let day = today.getDate();
@@ -151,6 +154,9 @@ function checkBirthdate() {
 	return false;
 }
 
+/**
+ * check input value no null and return boolean
+ */
 function checkTournament() {
 	let reg = "[0-9]+";
 	if (!quantity.value.match(reg) || quantity.value == "") {
@@ -164,6 +170,9 @@ function checkTournament() {
 	}
 }
 
+/**
+ * check input radio is checked and return boolean
+ */
 function checkRadio() {
 	if (document.querySelector('input[name="location"]:checked') == null) {
 		document.getElementById("location1").closest("div.formData").dataset.errorVisible = "true";
@@ -175,6 +184,9 @@ function checkRadio() {
 
 }
 
+/**
+ * check the checkbox is checked and return boolean
+ */
 function checkTerms() {
 	if (!document.getElementById("checkbox1").checked) {
 		document.getElementById("checkbox1").closest("div.formData").closest("div.formData").dataset.errorVisible = "true";
