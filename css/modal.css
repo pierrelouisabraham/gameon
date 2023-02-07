@@ -361,7 +361,6 @@ input[data-error-visible="true"] {
 .btn-signup {
   background: #fe142f;
   display: block;
-  margin: 0 auto;
   border-radius: 7px;
   font-size: 1rem;
   padding: 12px 82px;
@@ -564,5 +563,11 @@ footer {
   }
   to {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .btn-signup{
+    margin-left: 25%;
   }
 }
