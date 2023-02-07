@@ -188,6 +188,20 @@ main {
   background-color: rgba(26, 39, 156, 0.4);
 }
 
+#modalsuccess {
+  display: flex;
+  height: 90%;
+  align-items: center;
+  padding: 0;
+  top: 8%;
+}
+
+@media screen and (max-width: 768px) {
+  #modalsuccess > .modal-body > button {
+    margin: 28%;
+  }
+}
+
 .content {
   margin: 5% auto;
   width: 100%;

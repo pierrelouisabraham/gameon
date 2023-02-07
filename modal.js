@@ -10,6 +10,7 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector("#register");
 const modalBtn = document.querySelector("#registerbtn");
+const modalBtnMobile = document.querySelector("#registerbtnmobile");
 const modalBtnSuccess = document.querySelector("#successbtn");
 const formData = document.querySelectorAll(".formData");
 const regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -19,6 +20,7 @@ const email = document.getElementById("email");
 const birthdate = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const modalbgsuccess = document.querySelector("#success");
+const radio = document.querySelector("#checkbox1");
 
 
 
@@ -33,36 +35,36 @@ document.querySelector("form").addEventListener("submit", evt => {
 	error = checkTournament() || error;
 	error = checkRadio() || error;
 	error = checkTerms() || error;
-	if (error)
-		evt.preventDefault();
-	else {
-		evt.stopPropagation();
+	if (!error) {
 		closeModal();
 		openModalSuccess();
 	}
+	// comme les données acceptée provoquesnt le rechargement de la page, on annule ce comportement sinon la modale disparait immédiatement
+	evt.preventDefault();
 });
 
 //launch modal success
 function openModalSuccess() {
 	modalbgsuccess.style.display = "block";
-	console.log('2')
 }
 
-//fermeture modal success
+// fermeture modal success
 function closeModalSuccess() {
 	modalbgsuccess.style.display = "none";
+	window.location.href = "index.html";
 }
 
 // launch modal event
 modalBtn.addEventListener("click", launchModal);
+modalBtnMobile.addEventListener("click", launchModal);
 
+// close
 modalBtnSuccess.addEventListener("click", closeModalSuccess);
 
 
 // launch modal form
 function launchModal() {
 	modalbg.style.display = "block";
-	console.log('1')
 }
 
 function closeModal() {
@@ -90,20 +92,24 @@ document.querySelector("#quantity").addEventListener("blur", checkTournament);
 document.querySelectorAll("input[type='radio']").forEach(radio => {
 	radio.addEventListener(("click"), checkRadio);
 });
-document.querySelector("#checkbox1").addEventListener("click", checkTerms);
+radio.addEventListener("click", checkTerms);
 
+
+function printErrorMessage(el, bool) {
+	el.dataset.errorVisible = bool;
+	el.closest("div.formData").dataset.errorVisible = bool;
+}
 
 /**
  * check input value contain at least 2 letters return true
  */
 function checkFirstname() {
 	if (firstNameInput.value.length < 2) {
-		firstNameInput.dataset.errorVisible = "true";
-		firstNameInput.closest("div.formData").dataset.errorVisible = "true";
+		printErrorMessage(firstNameInput, true);
 		return true;
 	}
-	firstNameInput.dataset.errorVisible = "false";
-	firstNameInput.closest("div.formData").dataset.errorVisible = "false";
+
+	printErrorMessage(firstNameInput, false);
 	return false;
 }
 
@@ -112,12 +118,10 @@ function checkFirstname() {
  */
 function checkName() {
 	if (lastNameInput.value.length < 2) {
-		lastNameInput.dataset.errorVisible = "true";
-		lastNameInput.closest("div.formData").dataset.errorVisible = "true";
+		printErrorMessage(lastNameInput, true);
 		return true;
 	}
-	lastNameInput.dataset.errorVisible = "false";
-	lastNameInput.closest("div.formData").dataset.errorVisible = "false";
+	printErrorMessage(lastNameInput, false);
 	return false;
 }
 
@@ -126,12 +130,10 @@ function checkName() {
  */
 function checkEmail() {
 	if (!email.value.match(regex)) {
-		email.dataset.errorVisible = "true";
-		email.closest("div.formData").dataset.errorVisible = "true";
+		printErrorMessage(email, true);
 		return true;
 	}
-	email.dataset.errorVisible = "false";
-	email.closest("div.formData").dataset.errorVisible = "false";
+	printErrorMessage(email, false);
 	return false;
 }
 
@@ -145,12 +147,10 @@ function checkBirthdate() {
 	let year = today.getFullYear();
 	let birthYear = new Date([birthdate.value])
 	if (birthdate.value == "" || birthYear > today) {
-		birthdate.dataset.errorVisible = "true";
-		birthdate.closest("div.formData").dataset.errorVisible = "true";
+		printErrorMessage(birthdate, true);
 		return true;
 	}
-	birthdate.dataset.errorVisible = "false";
-	birthdate.closest("div.formData").dataset.errorVisible = "false";
+	printErrorMessage(birthdate, false);
 	return false;
 }
 
@@ -160,12 +160,10 @@ function checkBirthdate() {
 function checkTournament() {
 	let reg = "[0-9]+";
 	if (!quantity.value.match(reg) || quantity.value == "") {
-		quantity.dataset.errorVisible = "true";
-		quantity.closest("div.formData").dataset.errorVisible = "true";
+		printErrorMessage(quantity, true);
 		return true;
 	} else {
-		quantity.dataset.errorVisible = "false";
-		quantity.closest("div.formData").closest("div.formData").dataset.errorVisible = "false";
+		printErrorMessage(quantity, false);
 		return false;
 	}
 }
