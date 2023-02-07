@@ -94,7 +94,12 @@ document.querySelectorAll("input[type='radio']").forEach(radio => {
 });
 radio.addEventListener("click", checkTerms);
 
-
+/**
+ * 
+ * @param {htmlElement} el
+ * @param {boolean} bool
+ * affiche le message d'erreur à true
+ */
 function printErrorMessage(el, bool) {
 	el.dataset.errorVisible = bool;
 	el.closest("div.formData").dataset.errorVisible = bool;
