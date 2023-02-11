@@ -39,7 +39,7 @@ document.querySelector("form").addEventListener("submit", evt => {
 		closeModal();
 		openModalSuccess();
 	}
-	// comme les données acceptée provoquesnt le rechargement de la page, on annule ce comportement sinon la modale disparait immédiatement
+	// comme les données acceptée provoquent le rechargement de la page, on annule ce comportement sinon la modale disparait immédiatement
 	evt.preventDefault();
 });
 
@@ -73,14 +73,6 @@ function closeModal() {
 
 function hideElement(el) {
 	el.style.display = "none";
-}
-
-/**
- * 
- * @param {htmlElement} el 
- */
-function showElement(el) {
-	el.style.display = "inline";
 }
 
 // validation check sur chacun des champs
